@@ -26,7 +26,7 @@ func Print(w io.Writer) error {
 	tw := new(tabwriter.Writer)
 	tw.Init(w, 0, 0, 0, ' ', tabwriter.AlignRight)
 	fmt.Fprintln(tw)
-	fmt.Fprintln(tw, "hashid:", "\t", "Style console and log output")
+	fmt.Fprintln(tw, "hashid:", "\t", "Deterministic globally unique identifiers")
 	fmt.Fprintln(tw, "Version:", "\t", Tag)
 	fmt.Fprintln(tw, "Build Commit Hash:", "\t", Commit)
 	fmt.Fprintln(tw, "Build Time:", "\t", Time)
