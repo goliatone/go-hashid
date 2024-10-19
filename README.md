@@ -11,10 +11,30 @@
 - Thread-safe and no external dependencies.
 
 
-## Installation
+## <a name='installation'></a>Installation
 
-```bash
-go get github.com/goliatone/hashid
+### <a name='macos'></a>macOS
+
+Add tap to brew:
+
+```console
+$ brew tap goliatone/homebrew-tap
+```
+
+Install `hashid`:
+
+```console
+$ brew install hashid
+```
+
+
+### <a name='ubuntu-debianx86-64-amd64'></a>Ubuntu/Debian x86_64 - amd64
+
+```console
+$ export tag=<version>
+$ cd /tmp
+$ wget https://github.com/goliatone/hashid/releases/download/v${tag}/hashid_${tag}_linux_x86_64.deb
+$ sudo dpkg -i hashid_${tag}_linux_x86_64.deb
 ```
 
 ## Usage
