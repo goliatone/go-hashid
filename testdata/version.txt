@@ -1,0 +1,8 @@
+
+           hashid:  Deterministic globally unique identifiers
+          Version:  0.0.1
+Build Commit Hash:  9ae92b384895797a5b291349eb64434d74a96b81
+       Build Time:  2024-10-19T03:29:45Z
+       Build User:  goliatone
+             Info:  https://github.com/goliatone/hashid
+
