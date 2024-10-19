@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/goliatone/hashid/pkg/hashid"
+	"github.com/goliatone/hashid/pkg/version"
 )
 
 type config struct {
@@ -19,13 +20,11 @@ type config struct {
 	charmapFile string
 }
 
-const version = "v0.0.1"
-
 func main() {
 	conf := parseFlags()
 
 	if conf.showVersion {
-		fmt.Printf("hashid %s\n", version)
+		version.Print(os.Stdout)
 		os.Exit(0)
 	}
 
