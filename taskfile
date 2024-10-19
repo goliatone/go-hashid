@@ -158,7 +158,7 @@ function release {
     # Fetch all changes from origin
     git fetch --all
     # Make sure we have the latest version file
-    git checkout origin/master -- ".version"
+    git checkout origin/main -- ".version"
 
     # Pull tags to make sure we have
     git pull --tags -f
