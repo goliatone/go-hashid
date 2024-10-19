@@ -29,7 +29,7 @@ func main() {
 	}
 
 	if len(flag.Args()) < 1 {
-		fmt.Fprintln(os.Stderr, "Error: Input string is required")
+		fmt.Fprint(os.Stderr, "Error: Input string is required\n\n")
 		usage()
 		os.Exit(1)
 	}
@@ -130,5 +130,9 @@ Examples:
   hashid -no-normalize "user@example.com"
   hashid -normalize upper "user@example.com"
   hashid -uuid-version 8 "user@example.com"
-`)
+
+Version:
+  %s
+
+`, version.GetVersion())
 }
