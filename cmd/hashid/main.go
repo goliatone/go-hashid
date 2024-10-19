@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/goliatone/hashid/pkg/hashid"
+	"github.com/goliatone/hashid/pkg/version"
 )
 
 type config struct {
@@ -19,18 +20,16 @@ type config struct {
 	charmapFile string
 }
 
-const version = "v0.0.1"
-
 func main() {
 	conf := parseFlags()
 
 	if conf.showVersion {
-		fmt.Printf("hashid %s\n", version)
+		version.Print(os.Stdout)
 		os.Exit(0)
 	}
 
 	if len(flag.Args()) < 1 {
-		fmt.Fprintln(os.Stderr, "Error: Input string is required")
+		fmt.Fprint(os.Stderr, "Error: Input string is required\n\n")
 		usage()
 		os.Exit(1)
 	}
@@ -131,5 +130,9 @@ Examples:
   hashid -no-normalize "user@example.com"
   hashid -normalize upper "user@example.com"
   hashid -uuid-version 8 "user@example.com"
-`)
+
+Version:
+  %s
+
+`, version.GetVersion())
 }
