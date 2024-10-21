@@ -1,6 +1,6 @@
 # Changelog
 
-# [unreleased]
+# [0.0.6](https://github.com/goliatone/hashid/compare/v0.0.5...v0.0.6) - (2024-10-21)
 
 ## <!-- 1 -->🐛 Bug Fixes
 
@@ -15,6 +15,10 @@
 - Install git changelog manager ([dc204f3](https://github.com/goliatone/hashid/commit/dc204f367963626bd9f396d19c8fbb613ad3d87e))  - (goliatone)
 - Configuration file for changelog generator ([72814b8](https://github.com/goliatone/hashid/commit/72814b81eb65101a030cc8b5f1909c19ed0e23c5))  - (goliatone)
 - Task to generate chagnelog ([5c74430](https://github.com/goliatone/hashid/commit/5c7443012c5c39ca2786fd129c6c5293cdc982a5))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.0.6 ([ee420cf](https://github.com/goliatone/hashid/commit/ee420cf3fdc111604df7fff4fe7f65118c39abf5))  - (goliatone)
 
 ## <!-- 30 -->📝 Other
 
