@@ -1,5 +1,25 @@
 # Changelog
 
+# [unreleased]
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Goreleaser tempate ([4994910](https://github.com/goliatone/hashid/commit/4994910c7b2b28897625e354bee6c7938e40e07e))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.0.6 ([3495025](https://github.com/goliatone/hashid/commit/3495025e4ad07188ff08f4cfa3e37b90e9ecb618))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- Install git changelog manager ([dc204f3](https://github.com/goliatone/hashid/commit/dc204f367963626bd9f396d19c8fbb613ad3d87e))  - (goliatone)
+- Configuration file for changelog generator ([72814b8](https://github.com/goliatone/hashid/commit/72814b81eb65101a030cc8b5f1909c19ed0e23c5))  - (goliatone)
+- Task to generate chagnelog ([5c74430](https://github.com/goliatone/hashid/commit/5c7443012c5c39ca2786fd129c6c5293cdc982a5))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#5](https://github.com/goliatone/hashid/pull/5): Changelog management ([6039fdd](https://github.com/goliatone/hashid/commit/6039fdd9a63657c7a318c68962d51a14c3cade2b))  - (goliatone)
+
 # [0.0.5](https://github.com/goliatone/hashid/compare/v0.0.4...v0.0.5) - (2024-10-19)
 
 ## <!-- 1 -->🐛 Bug Fixes
