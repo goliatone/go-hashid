@@ -178,6 +178,11 @@ function release {
     git add "${VERSION_FILE}"
     git commit -m "Bump version: v${tag}"
 
+    # Generate changelog
+    git-cliff --output CHANGELOG.md
+    git add CHANGELOG.md
+    git commit -m "docs: update changelog for v${tag}"
+
     # Create a new tag
     git tag -a "v${tag}" -m "${message}"
 
