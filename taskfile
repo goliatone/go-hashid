@@ -27,14 +27,23 @@ PATH=$(pwd)/src/bin:$PATH
 #################################################
 
 function _install:lgr {
-    mkdir -p bin
-    if hash lgr 2>/dev/null; then
+    if lgr lgr 2>/dev/null; then
         lgr OK "lgr already installed..."
     else
         echo "Installing lgr"
         brew tap goliatone/homebrew-tap
         brew install lgr
         lgr OK "lgr installed..."
+    fi
+}
+
+function _install:changelog {
+    if git-cliff lgr 2>/dev/null; then
+        lgr OK "git-cliff already installed..."
+    else
+        echo "Installing lgr"
+        brew install brew install orhun/git-cliff/git-cliff
+        lgr OK "git-cliff installed..."
     fi
 }
 
@@ -69,7 +78,7 @@ function dev:install {
     _install:brew
 
     _install:envset
-    _install:sqlcmd
+    _install:changelog
 
     lgr ok "dependencies intalled..."
 }
@@ -177,6 +186,11 @@ function release {
     # Add updated version file to git
     git add "${VERSION_FILE}"
     git commit -m "Bump version: v${tag}"
+
+    # Generate changelog
+    git cliff --output CHANGELOG.md
+    git add CHANGELOG.md
+    git commit -m "docs: update changelog for v${tag}"
 
     # Create a new tag
     git tag -a "v${tag}" -m "${message}"
