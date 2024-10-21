@@ -109,7 +109,7 @@ func loadCustomCharMap(filename string) (map[string]string, error) {
 }
 
 func usage() {
-	fmt.Fprintf(os.Stderr, `Usage: hashid [options] <input-string>
+	fmt.Fprintf(os.Stderr, `Usage: hashid [options] <user@example.com>
 
 Options:
   -hash string
