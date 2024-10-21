@@ -9,11 +9,14 @@ import (
 	"hash"
 )
 
+// HashAlgorithm captures the supported hasing algorithms
 type HashAlgorithm string
 
 const (
-	MD5         HashAlgorithm = "md5"
-	SHA1        HashAlgorithm = "sha1"
+	MD5 HashAlgorithm = "md5"
+	// SHA1 is a hashing algorithm that produces a 256-bit digest.
+	SHA1 HashAlgorithm = "sha1"
+	// SHA256 is a hashing algorithm that produces a 256-bit digest.
 	SHA256      HashAlgorithm = "sha256"
 	HMAC_SHA256 HashAlgorithm = "hmac"
 )
@@ -27,6 +30,8 @@ type options struct {
 	charMap     map[string]string
 }
 
+// Option configures the behavior of the New function. It allows you to set
+// different hashing algorithms, normalization rules, or UUID versions.
 type Option func(*options)
 
 func defaultOptions() options {
@@ -40,6 +45,9 @@ func defaultOptions() options {
 	}
 }
 
+// WithHashAlgorithm sets the hashing algorithm for generating the UUID.
+//
+// Supported algorithms: MD5, SHA1, SHA256, HMAC-SHA256.
 func WithHashAlgorithm(algo HashAlgorithm) Option {
 	return func(o *options) {
 		o.hashAlgo = algo
@@ -54,12 +62,20 @@ func WithHashAlgorithm(algo HashAlgorithm) Option {
 	}
 }
 
+// WithCustomNormalizer sets the function used to normalize
+// the input strings. This step is crucial to ensure that
+// different string representations of the same entity
+// return the same hash, for example if your input is
+// an username or email then you ensure that lower/upper
+// and other characters make no difference.
 func WithCustomNormalizer(normalizer func(string) (string, error)) Option {
 	return func(o *options) {
 		o.normalizer = normalizer
 	}
 }
 
+// WithHMACKey will set the HMAC key used to hash
+// the input strings.
 func WithHMACKey(key []byte) Option {
 	return func(o *options) {
 		o.hmacKey = key
@@ -67,6 +83,8 @@ func WithHMACKey(key []byte) Option {
 	}
 }
 
+// WithNormalization will set wether we normalize
+// input strings or not. Default `true`
 func WithNormalization(normalize bool) Option {
 	return func(o *options) {
 		o.normalize = normalize
@@ -80,12 +98,34 @@ func WithUUIDVersion(version int) Option {
 	}
 }
 
+// WithCustomCharMap allows you to provide a custom character map
+// for normalization. The character map replaces specific characters
+// in the input string with mapped values, enabling support for
+// custom transformations during normalization.
+//
+// Example usage:
+//
+//	customMap := map[string]string{"Æ": "AE", "ß": "ss"}
+//	id, _ := hashid.New("input", hashid.WithCustomCharMap(customMap))
 func WithCustomCharMap(mapping map[string]string) Option {
 	return func(o *options) {
 		o.charMap = mapping
 	}
 }
 
+// New generates a UUID from the provided input string,
+// as long as the normalization and hashing options remain
+// the same so will the ouptut.
+// The algorithm used is defined by the options passed.
+//
+// Example:
+//
+//	id, err := hashid.New("user@example.com",
+//		   hashid.WithHashAlgorithm(hashid.SHA256))
+//	if err != nil {
+//	  log.Fatal(err)
+//	}
+//	fmt.Println(id)
 func New(input string, opts ...Option) (string, error) {
 	config := defaultOptions()
 
