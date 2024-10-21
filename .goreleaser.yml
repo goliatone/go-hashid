@@ -40,13 +40,17 @@ checksum:
 snapshot:
   version_template: "{{ .Tag }}-next"
 changelog:
+  use: github
   sort: asc
   filters:
     exclude:
       - "^docs:"
       - "^test:"
+      - "^chore:"
+      - "^style:"
       - "^Update README"
       - "merge fix"
+  format: '{{ .SHA }}: {{ .Message }} ({{ with .AuthorUsername }}@{{ . }}{{ else }}{{ .AuthorName }} <{{ .AuthorEmail }}>{{ end }})'
 brews:
   - name: hashid
     repository:
