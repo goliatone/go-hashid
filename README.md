@@ -48,15 +48,15 @@ import "github.com/goliatone/hashid"
 
 func main() {
     // Basic usage with defaults (MD5, UUID v3)
-    uuid, err := hashid.New("my-input-string")
+    uuid, err := hashid.New("user@example.com")
 
     // Using SHA1 (UUID v5)
-    uuid, err = hashid.New("my-input-string",
+    uuid, err = hashid.New("user@example.com",
         hashid.WithHashAlgorithm(hashid.SHA1))
 
     // Using HMAC-SHA256 (UUID v8)
     key := []byte("secret-key")
-    uuid, err = hashid.New("my-input-string",
+    uuid, err = hashid.New("user@example.com",
         hashid.WithHashAlgorithm(hashid.HMAC_SHA256),
         hashid.WithHMACKey(key))
 
@@ -70,19 +70,19 @@ func main() {
 
 ```bash
 # Basic usage
-hashid "my-input-string"
+hashid "user@example.com"
 
 # Using SHA1
-hashid -hash sha1 "my-input-string"
+hashid -hash sha1 "user@example.com"
 
 # Using HMAC
-hashid -hash hmac -key mysecret "my-input-string"
+hashid -hash hmac -key mysecret "user@example.com"
 
 # No need to specify hash if key given
-hashid -key mysecret "my-input-string"
+hashid -key mysecret "user@example.com"
 
 # Custom normalization
-hashid -normalize upper "my-input-string"
+hashid -normalize upper "user@example.com"
 ```
 
 ## Implementation Details
