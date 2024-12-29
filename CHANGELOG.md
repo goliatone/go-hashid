@@ -1,5 +1,33 @@
 # Changelog
 
+# [0.1.0](https://github.com/goliatone/hashid/compare/v0.0.6...v0.1.0) - (2024-12-29)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Mvoe changelog commands to end to task to include the generated tag ([b7317a4](https://github.com/goliatone/hashid/commit/b7317a4bcb4d6304006944d00500e5804ae59cba))  - (goliatone)
+- Remove unreleased tag ([ec51152](https://github.com/goliatone/hashid/commit/ec51152e0d03f4424b9e1915d8e880a170d2ada0))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.1.0 ([aa7c4c9](https://github.com/goliatone/hashid/commit/aa7c4c9e143fc372425d6ebc3a0c51c5aa32cd5c))  - (goliatone)
+
+## <!-- 16 -->➕ Add
+
+- New methods for returning UUIDs and short IDs ([f61c8d7](https://github.com/goliatone/hashid/commit/f61c8d7350d6710cd388cfc4271614f270e4d364))  - (goliatone)
+- New methods for returning UUIDs and short IDs ([983e0aa](https://github.com/goliatone/hashid/commit/983e0aa1437d190aaaaa09072032b2cade0b2bf2))  - (goliatone)
+- Update documentation ([098dbe1](https://github.com/goliatone/hashid/commit/098dbe1bd2a9c801fd1f3df81acb73948d90fce6))  - (goliatone)
+- Update documentation ([2970155](https://github.com/goliatone/hashid/commit/29701556f0ce395044c2206f0b9997a152aecfd9))  - (goliatone)
+- Update documentation ([1e37753](https://github.com/goliatone/hashid/commit/1e37753cc57571f6246cbed8836797339f5ae4e9))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#7](https://github.com/goliatone/hashid/pull/7): shortuuid ([c90b0fe](https://github.com/goliatone/hashid/commit/c90b0fe8a2dc67414210b9e1e33d6ef756fbebb7))  - (goliatone)
+- PR [#6](https://github.com/goliatone/hashid/pull/6): Docs ([2e2a31e](https://github.com/goliatone/hashid/commit/2e2a31e8b3a50ca01f48916cdbb714f207764894))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Add deps ([f5352eb](https://github.com/goliatone/hashid/commit/f5352eb9b05d45e7970976d5c78a7b4aac4922d1))  - (goliatone)
+
 # [0.0.6](https://github.com/goliatone/hashid/compare/v0.0.5...v0.0.6) - (2024-10-21)
 
 ## <!-- 1 -->🐛 Bug Fixes
