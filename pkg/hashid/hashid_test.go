@@ -5,6 +5,7 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -205,6 +206,184 @@ func TestInvalidConfigurations(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			_, err := New(tc.input, tc.options...)
 			assert.Error(t, err)
+		})
+	}
+}
+
+func TestNewUUID(t *testing.T) {
+	testCases := []struct {
+		name    string
+		input   string
+		options []Option
+		wantErr bool
+	}{
+		{
+			name:    "Default settings",
+			input:   "test@example.com",
+			options: nil,
+			wantErr: false,
+		},
+		{
+			name:    "With SHA1",
+			input:   "test@example.com",
+			options: []Option{WithHashAlgorithm(SHA1)},
+			wantErr: false,
+		},
+		{
+			name:    "With HMAC-SHA256",
+			input:   "test@example.com",
+			options: []Option{WithHMACKey([]byte("secret")), WithHashAlgorithm(HMAC_SHA256)},
+			wantErr: false,
+		},
+		{
+			name:    "Empty input",
+			input:   "",
+			options: nil,
+			wantErr: false,
+		},
+		{
+			name:    "Invalid configuration",
+			input:   "test",
+			options: []Option{WithHashAlgorithm(HMAC_SHA256)}, // HMAC without key
+			wantErr: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			uid, err := NewUUID(tc.input, tc.options...)
+			if tc.wantErr {
+				assert.Error(t, err)
+				return
+			}
+
+			assert.NoError(t, err)
+			assert.NotEqual(t, uuid.Nil, uid)
+
+			// Verify the version based on algorithm
+			version := uid.Version()
+			if len(tc.options) > 0 {
+				opts := defaultOptions()
+				tc.options[0](&opts)
+				switch opts.hashAlgo {
+				case SHA1:
+					assert.Equal(t, uuid.Version(5), version)
+				case HMAC_SHA256:
+					assert.Equal(t, uuid.Version(8), version)
+				default:
+					assert.Equal(t, uuid.Version(3), version)
+				}
+			} else {
+				assert.Equal(t, uuid.Version(3), version)
+			}
+		})
+	}
+}
+
+func TestNewShortUUID(t *testing.T) {
+	testCases := []struct {
+		name    string
+		input   string
+		options []Option
+		wantErr bool
+	}{
+		{
+			name:    "Default settings",
+			input:   "test@example.com",
+			options: nil,
+			wantErr: false,
+		},
+		{
+			name:    "With SHA1",
+			input:   "test@example.com",
+			options: []Option{WithHashAlgorithm(SHA1)},
+			wantErr: false,
+		},
+		{
+			name:    "Empty input",
+			input:   "",
+			options: nil,
+			wantErr: false,
+		},
+		{
+			name:    "Invalid configuration",
+			input:   "test",
+			options: []Option{WithHashAlgorithm(HMAC_SHA256)}, // HMAC without key
+			wantErr: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			shortID, err := NewShortUUID(tc.input, tc.options...)
+			if tc.wantErr {
+				assert.Error(t, err)
+				return
+			}
+
+			assert.NoError(t, err)
+			assert.NotEmpty(t, shortID)
+
+			// Verify we can parse it back
+			uid, err := ParsehortUUID(shortID)
+			assert.NoError(t, err)
+			assert.NotEqual(t, uuid.Nil, uid)
+		})
+	}
+}
+
+func TestParseShortUUID(t *testing.T) {
+	testCases := []struct {
+		name    string
+		input   string
+		wantErr bool
+	}{
+		{
+			name:    "Valid short UUID",
+			input:   "2M9JFnemic9bLiXnT8AHun",
+			wantErr: false,
+		},
+		{
+			name:    "Invalid characters",
+			input:   "invalid-uuid-format!!!",
+			wantErr: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			uid, err := ParsehortUUID(tc.input)
+			if tc.wantErr {
+				assert.Error(t, err)
+				return
+			}
+
+			assert.NoError(t, err)
+			assert.NotEqual(t, uuid.Nil, uid)
+		})
+	}
+}
+
+func TestUUIDRoundTrip(t *testing.T) {
+	testInputs := []string{
+		"test@example.com",
+		"user-123",
+		"complex!!@@##string",
+		"1234567890",
+	}
+
+	for _, input := range testInputs {
+		t.Run("Round trip: "+input, func(t *testing.T) {
+			// Generate short UUID
+			shortID, err := NewShortUUID(input)
+			assert.NoError(t, err)
+
+			// Parse it back to UUID
+			uid, err := ParsehortUUID(shortID)
+			assert.NoError(t, err)
+
+			// Verify it's valid
+			assert.NotEqual(t, uuid.Nil, uid)
 		})
 	}
 }
