@@ -7,6 +7,9 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"hash"
+
+	"github.com/google/uuid"
+	"github.com/lithammer/shortuuid"
 )
 
 // HashAlgorithm captures the supported hasing algorithms
@@ -111,6 +114,37 @@ func WithCustomCharMap(mapping map[string]string) Option {
 	return func(o *options) {
 		o.charMap = mapping
 	}
+}
+
+func NewUUID(input string, opts ...Option) (uuid.UUID, error) {
+	id, err := New(input, opts...)
+	if err != nil {
+		return uuid.Nil, err
+	}
+
+	uid, err := uuid.Parse(id)
+	if err != nil {
+		return uuid.Nil, err
+	}
+
+	return uid, nil
+}
+
+func NewShortUUID(input string, opts ...Option) (string, error) {
+	uid, err := NewUUID(input, opts...)
+	if err != nil {
+		return "", err
+	}
+	enc := shortuuid.DefaultEncoder.Encode(uid)
+	return enc, nil
+}
+
+func ParsehortUUID(sid string) (uuid.UUID, error) {
+	uid, err := shortuuid.DefaultEncoder.Decode(sid)
+	if err != nil {
+		return uuid.Nil, err
+	}
+	return uid, nil
 }
 
 // New generates a UUID from the provided input string,
