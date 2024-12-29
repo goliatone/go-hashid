@@ -325,7 +325,7 @@ func TestNewShortUUID(t *testing.T) {
 			assert.NotEmpty(t, shortID)
 
 			// Verify we can parse it back
-			uid, err := ParsehortID(shortID)
+			uid, err := ParseShortID(shortID)
 			assert.NoError(t, err)
 			assert.NotEqual(t, uuid.Nil, uid)
 		})
@@ -352,7 +352,7 @@ func TestParseShortUUID(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			uid, err := ParsehortID(tc.input)
+			uid, err := ParseShortID(tc.input)
 			if tc.wantErr {
 				assert.Error(t, err)
 				return
@@ -379,7 +379,7 @@ func TestUUIDRoundTrip(t *testing.T) {
 			assert.NoError(t, err)
 
 			// Parse it back to UUID
-			uid, err := ParsehortID(shortID)
+			uid, err := ParseShortID(shortID)
 			assert.NoError(t, err)
 
 			// Verify it's valid
