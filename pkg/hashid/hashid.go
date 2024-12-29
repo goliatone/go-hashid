@@ -130,7 +130,7 @@ func NewUUID(input string, opts ...Option) (uuid.UUID, error) {
 	return uid, nil
 }
 
-func NewShortUUID(input string, opts ...Option) (string, error) {
+func NewShortID(input string, opts ...Option) (string, error) {
 	uid, err := NewUUID(input, opts...)
 	if err != nil {
 		return "", err
@@ -139,7 +139,7 @@ func NewShortUUID(input string, opts ...Option) (string, error) {
 	return enc, nil
 }
 
-func ParsehortUUID(sid string) (uuid.UUID, error) {
+func ParseShortID(sid string) (uuid.UUID, error) {
 	uid, err := shortuuid.DefaultEncoder.Decode(sid)
 	if err != nil {
 		return uuid.Nil, err
