@@ -1,5 +1,29 @@
 # Changelog
 
+# [0.1.1](https://github.com/goliatone/hashid/compare/v0.1.0...v0.1.1) - (2024-12-29)
+
+## <!-- 1 -->🐛 Bug Fixes
+
+- Typo ([1fb2597](https://github.com/goliatone/hashid/commit/1fb25974d0a3d50339cb6a7cca1518db077bac5b))  - (goliatone)
+- Rename functions ([258e353](https://github.com/goliatone/hashid/commit/258e3537fccf573214dd5faf89856d67363f5791))  - (goliatone)
+- Rename functions ([496c186](https://github.com/goliatone/hashid/commit/496c186b8ab8e1d0741feb7431f3195f5ab158dc))  - (goliatone)
+
+## <!-- 13 -->📦 Bumps
+
+- Bump version: v0.1.1 ([caf1064](https://github.com/goliatone/hashid/commit/caf106418b9fdd9f2b113f3213ce5c91ec834f6e))  - (goliatone)
+
+## <!-- 3 -->📚 Documentation
+
+- Update changelog for v0.1.0 ([0eb05b0](https://github.com/goliatone/hashid/commit/0eb05b0a55fdd5b22cc6e24f1e3b58bb55006d13))  - (goliatone)
+
+## <!-- 30 -->📝 Other
+
+- PR [#8](https://github.com/goliatone/hashid/pull/8): docs ([626a219](https://github.com/goliatone/hashid/commit/626a219fc25d5e9608b30f2ef1c623f0f7aa4b59))  - (goliatone)
+
+## <!-- 7 -->⚙️ Miscellaneous Tasks
+
+- Update docs ([7088250](https://github.com/goliatone/hashid/commit/7088250f9794de135939b6dbc4b71317701bd3cf))  - (goliatone)
+
 # [0.1.0](https://github.com/goliatone/hashid/compare/v0.0.6...v0.1.0) - (2024-12-29)
 
 ## <!-- 1 -->🐛 Bug Fixes
